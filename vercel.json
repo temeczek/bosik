@@ -1,0 +1,24 @@
+{
+  "functions": { "api/index.js": { "maxDuration": 30 } },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/regulamin", "destination": "/legal.html" },
+    { "source": "/polityka-prywatnosci", "destination": "/legal.html" },
+    { "source": "/uslugi/:path*", "destination": "/api/index" },
+    { "source": "/zlecenie/:id", "destination": "/api/index" },
+    { "source": "/foto/:id", "destination": "/api/index" },
+    { "source": "/sitemap.xml", "destination": "/api/index" },
+    { "source": "/robots.txt", "destination": "/api/index" },
+    { "source": "/healthz", "destination": "/api/index" }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "same-origin" },
+      { "key": "X-Frame-Options", "value": "DENY" },
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'" }
+    ] },
+    { "source": "/admin", "headers": [ { "key": "X-Robots-Tag", "value": "noindex" } ] }
+  ]
+}
